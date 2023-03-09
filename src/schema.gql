@@ -11,15 +11,28 @@ type ActivityType {
   description: String!
 }
 
+type UserType {
+  id: ID!
+  name: String!
+  surname: String!
+  email: String!
+  enrolledClasses: [String!]!
+  role: String!
+}
+
 type Query {
   hello: String!
-  activities: [ActivityType!]!
+  getActivities: [ActivityType!]!
+  getUsers: [UserType!]!
 }
 
 type Mutation {
   createActivity(input: ActivityInput!): ActivityType!
   updateActivity(id: String!, updatedActivity: ActivityInput!): ActivityType!
   deleteActivity(id: String!): ActivityType!
+  createUser(input: UserInput!): UserType!
+  updateUser(id: String!, updatedUser: UserInput!): UserType!
+  deleteUser(id: String!): UserType!
 }
 
 input ActivityInput {
@@ -28,4 +41,12 @@ input ActivityInput {
   ageLevel: String!
   duration: Int!
   description: String!
+}
+
+input UserInput {
+  name: String!
+  surname: String!
+  email: String!
+  enrolledClasses: [String!]!
+  role: String!
 }

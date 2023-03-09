@@ -2,9 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Activity } from './activities.schema';
-import { ActivityType } from './dto/create-activity.dto';
 import { ActivityInput } from './inputs/activity.input';
-import { GraphQLID } from 'graphql';
 
 @Injectable()
 export class ActivitesService {

@@ -13,7 +13,7 @@ export class ActivitiesResolver {
   }
 
   @Query(() => [ActivityType])
-  async activities() {
+  async getActivities() {
     return this.activitiesService.findAll();
   }
 
