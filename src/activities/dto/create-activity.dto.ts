@@ -19,4 +19,7 @@ export class ActivityType {
 
   @Field()
   readonly description: string;
+
+  @Field(() => [String])
+  readonly enrolledUsers: string[];
 }

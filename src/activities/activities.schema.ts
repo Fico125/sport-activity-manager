@@ -16,6 +16,9 @@ export class Activity {
 
   @Prop()
   description: string;
+
+  @Prop()
+  readonly enrolledUsers: string[];
 }
 
 export const ActivitySchema = SchemaFactory.createForClass(Activity);

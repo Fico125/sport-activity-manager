@@ -34,6 +34,7 @@ export class ActivitesService {
             ageLevel: updatedActivity.ageLevel,
             duration: updatedActivity.duration,
             description: updatedActivity.description,
+            enrolledUsers: updatedActivity.enrolledUsers,
           },
         },
         { new: true },

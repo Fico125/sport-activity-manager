@@ -9,6 +9,7 @@ type ActivityType {
   ageLevel: String!
   duration: Int!
   description: String!
+  enrolledUsers: [String!]!
 }
 
 type UserType {
@@ -41,6 +42,7 @@ input ActivityInput {
   ageLevel: String!
   duration: Int!
   description: String!
+  enrolledUsers: [String!]!
 }
 
 input UserInput {

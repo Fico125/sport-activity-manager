@@ -16,4 +16,7 @@ export class ActivityInput {
 
   @Field()
   readonly description: string;
+
+  @Field(() => [String])
+  readonly enrolledUsers: string[];
 }

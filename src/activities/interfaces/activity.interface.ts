@@ -6,4 +6,5 @@ export interface Activity extends Document {
   readonly ageLevel: string;
   readonly duration: number;
   readonly description: string;
+  readonly enrolledUsers: string[];
 }
