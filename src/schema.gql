@@ -1,0 +1,31 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ActivityType {
+  id: ID!
+  name: String!
+  weekSchedule: String!
+  ageLevel: String!
+  duration: Int!
+  description: String!
+}
+
+type Query {
+  hello: String!
+  activities: [ActivityType!]!
+}
+
+type Mutation {
+  createActivity(input: ActivityInput!): ActivityType!
+  updateActivity(id: String!, updatedActivity: ActivityInput!): ActivityType!
+  deleteActivity(id: String!): ActivityType!
+}
+
+input ActivityInput {
+  name: String!
+  weekSchedule: String!
+  ageLevel: String!
+  duration: Int!
+  description: String!
+}
