@@ -3,12 +3,18 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ActivitiesResolver } from './activities.resolver';
 import { ActivitySchema } from './activities.schema';
 import { ActivitesService } from './activities.service';
+import { ActivityNameScalar } from './scalars/activity-name.scalar';
 import { AgeLevelScalar } from './scalars/age-level.scalar';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'Activity', schema: ActivitySchema }]),
   ],
-  providers: [ActivitiesResolver, ActivitesService, AgeLevelScalar],
+  providers: [
+    ActivitiesResolver,
+    ActivitesService,
+    AgeLevelScalar,
+    ActivityNameScalar,
+  ],
 })
 export class ActivitiesModule {}

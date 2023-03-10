@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ActivityNameScalar } from './scalars/activity-name.scalar';
 import { AgeLevelScalar } from './scalars/age-level.scalar';
 
 @Schema()
 export class Activity {
-  @Prop()
+  @Prop({ type: ActivityNameScalar })
   name: string;
 
   @Prop()

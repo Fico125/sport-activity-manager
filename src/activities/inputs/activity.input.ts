@@ -1,11 +1,13 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { ArrayMaxSize } from 'class-validator';
+import { ActivityNameScalar } from '../scalars/activity-name.scalar';
 import { AgeLevelScalar } from '../scalars/age-level.scalar';
 
 @InputType()
 export class ActivityInput {
-  @Field()
+  @Field(() => ActivityNameScalar)
+  @Type(() => String)
   readonly name: string;
 
   @Field()
