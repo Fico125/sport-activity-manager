@@ -1,4 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { ArrayMaxSize } from 'class-validator';
 
 @InputType()
 export class UserInput {
@@ -12,6 +13,7 @@ export class UserInput {
   readonly email: string;
 
   @Field(() => [String])
+  @ArrayMaxSize(2)
   readonly enrolledClasses: string[];
 
   @Field()
