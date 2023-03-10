@@ -21,6 +21,12 @@ type UserType {
   role: String!
 }
 
+type ReviewType {
+  id: ID!
+  rating: Int!
+  comment: String!
+}
+
 """Age level scalar type"""
 scalar AgeLevel
 
@@ -34,6 +40,7 @@ type Query {
   hello: String!
   getActivities: [ActivityType!]!
   getUsers: [UserType!]!
+  getReviews: [ReviewType!]!
 }
 
 type Mutation {
@@ -44,6 +51,7 @@ type Mutation {
   createUser(input: UserInput!): UserType!
   updateUser(id: String!, updatedUser: UserInput!): UserType!
   deleteUser(id: String!): UserType!
+  createReview(createReviewInput: ReviewInput!): ReviewType!
 }
 
 input FilterActivitiesInput {
@@ -68,4 +76,10 @@ input UserInput {
   email: String!
   enrolledClasses: [String!]!
   role: String!
+}
+
+input ReviewInput {
+  id: ID!
+  rating: Int!
+  comment: String!
 }

@@ -8,6 +8,7 @@ import { ActivitiesModule } from './activities/activities.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UsersModule } from './users/users.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/nest'),
+    ReviewsModule,
   ],
   controllers: [AppController],
   providers: [

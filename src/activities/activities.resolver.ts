@@ -1,9 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ActivitesService } from './activities.service';
-import { ActivityType } from './dto/create-activity.dto';
+import { ActivityType } from './dto/activity.dto';
 import { FilterActivitiesInput } from './filters/filter-activities.input';
-import { ActivityInput } from './inputs/activity.input';
-import { WeekSchedule } from './scalars/week-schedule.scalar';
+import { ActivityInput } from './entities/activity.entity';
 
 @Resolver()
 export class ActivitiesResolver {

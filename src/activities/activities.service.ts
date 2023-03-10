@@ -2,8 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Activity } from './activities.schema';
-import { ActivityInput } from './inputs/activity.input';
-import { WeekSchedule } from './scalars/week-schedule.scalar';
+import { ActivityInput } from './entities/activity.entity';
 import { FilterActivitiesInput } from './filters/filter-activities.input';
 
 @Injectable()
