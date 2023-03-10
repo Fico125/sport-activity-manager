@@ -6,7 +6,7 @@ type ActivityType {
   id: ID!
   name: String!
   weekSchedule: String!
-  ageLevel: String!
+  ageLevel: AgeLevel!
   duration: Int!
   description: String!
   enrolledUsers: [String!]!
@@ -20,6 +20,9 @@ type UserType {
   enrolledClasses: [String!]!
   role: String!
 }
+
+"""Age level scalar type"""
+scalar AgeLevel
 
 type Query {
   hello: String!
@@ -39,7 +42,7 @@ type Mutation {
 input ActivityInput {
   name: String!
   weekSchedule: String!
-  ageLevel: String!
+  ageLevel: AgeLevel!
   duration: Int!
   description: String!
   enrolledUsers: [String!]!

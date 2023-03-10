@@ -1,4 +1,6 @@
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
+import { Type } from 'class-transformer';
+import { AgeLevelScalar } from '../scalars/age-level.scalar';
 
 @ObjectType()
 export class ActivityType {
@@ -11,7 +13,8 @@ export class ActivityType {
   @Field()
   readonly weekSchedule: string;
 
-  @Field()
+  @Field(() => AgeLevelScalar)
+  @Type(() => String)
   readonly ageLevel: string;
 
   @Field(() => Int)

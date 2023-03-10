@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { AgeLevelScalar } from './scalars/age-level.scalar';
 
 @Schema()
 export class Activity {
@@ -8,7 +9,7 @@ export class Activity {
   @Prop()
   weekSchedule: string;
 
-  @Prop()
+  @Prop({ type: AgeLevelScalar })
   ageLevel: string;
 
   @Prop()

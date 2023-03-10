@@ -11,8 +11,8 @@ export class ActivitesService {
   ) {}
 
   async create(createActivityDto: ActivityInput): Promise<Activity> {
-    const createdCat = new this.activityModel(createActivityDto);
-    return createdCat.save();
+    const createdAct = new this.activityModel(createActivityDto);
+    return createdAct.save();
   }
 
   async findAll(): Promise<Activity[]> {
