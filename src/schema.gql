@@ -5,7 +5,7 @@
 type ActivityType {
   id: ID!
   name: ActivityName!
-  weekSchedule: String!
+  weekSchedule: WeekSchedule!
   ageLevel: AgeLevel!
   duration: Int!
   description: String!
@@ -27,6 +27,9 @@ scalar AgeLevel
 """Activity name custom scalar type"""
 scalar ActivityName
 
+"""Week schedule scalar type"""
+scalar WeekSchedule
+
 type Query {
   hello: String!
   getActivities: [ActivityType!]!
@@ -44,7 +47,7 @@ type Mutation {
 
 input ActivityInput {
   name: ActivityName!
-  weekSchedule: String!
+  weekSchedule: WeekSchedule!
   ageLevel: AgeLevel!
   duration: Int!
   description: String!

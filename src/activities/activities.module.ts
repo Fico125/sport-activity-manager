@@ -5,6 +5,7 @@ import { ActivitySchema } from './activities.schema';
 import { ActivitesService } from './activities.service';
 import { ActivityNameScalar } from './scalars/activity-name.scalar';
 import { AgeLevelScalar } from './scalars/age-level.scalar';
+import { WeekScheduleScalar } from './scalars/week-schedule.scalar';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AgeLevelScalar } from './scalars/age-level.scalar';
     ActivitesService,
     AgeLevelScalar,
     ActivityNameScalar,
+    WeekScheduleScalar,
   ],
 })
 export class ActivitiesModule {}

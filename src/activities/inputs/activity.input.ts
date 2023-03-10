@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 import { ArrayMaxSize } from 'class-validator';
 import { ActivityNameScalar } from '../scalars/activity-name.scalar';
 import { AgeLevelScalar } from '../scalars/age-level.scalar';
+import { WeekScheduleScalar } from '../scalars/week-schedule.scalar';
 
 @InputType()
 export class ActivityInput {
@@ -10,8 +11,8 @@ export class ActivityInput {
   @Type(() => String)
   readonly name: string;
 
-  @Field()
-  readonly weekSchedule: string;
+  @Field(() => WeekScheduleScalar)
+  readonly weekSchedule: { day: string; startTime: string };
 
   @Field(() => AgeLevelScalar)
   @Type(() => String)
