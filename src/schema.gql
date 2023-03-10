@@ -37,12 +37,20 @@ type Query {
 }
 
 type Mutation {
+  getFilteredActivities(filter: FilterActivitiesInput!): [ActivityType!]!
   createActivity(input: ActivityInput!): ActivityType!
   updateActivity(id: String!, updatedActivity: ActivityInput!): ActivityType!
   deleteActivity(id: String!): ActivityType!
   createUser(input: UserInput!): UserType!
   updateUser(id: String!, updatedUser: UserInput!): UserType!
   deleteUser(id: String!): UserType!
+}
+
+input FilterActivitiesInput {
+  name: String
+  weekSchedule: WeekSchedule
+  ageLevel: AgeLevel
+  duration: Int
 }
 
 input ActivityInput {

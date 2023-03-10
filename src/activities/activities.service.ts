@@ -3,6 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Activity } from './activities.schema';
 import { ActivityInput } from './inputs/activity.input';
+import { WeekSchedule } from './scalars/week-schedule.scalar';
+import { FilterActivitiesInput } from './filters/filter-activities.input';
 
 @Injectable()
 export class ActivitesService {
@@ -17,6 +19,28 @@ export class ActivitesService {
 
   async findAll(): Promise<Activity[]> {
     return this.activityModel.find().exec();
+  }
+
+  async filterActivities(filter: FilterActivitiesInput): Promise<Activity[]> {
+    const query = {};
+
+    if (filter.name) {
+      query['name'] = filter.name;
+    }
+
+    if (filter.weekSchedule) {
+      query['weekSchedule'] = filter.weekSchedule;
+    }
+
+    if (filter.ageLevel) {
+      query['ageLevel'] = filter.ageLevel;
+    }
+
+    if (filter.duration) {
+      query['duration'] = filter.duration;
+    }
+
+    return this.activityModel.find(query).exec();
   }
 
   async delete(id: string): Promise<Activity> {

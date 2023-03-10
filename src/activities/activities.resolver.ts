@@ -1,7 +1,9 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ActivitesService } from './activities.service';
 import { ActivityType } from './dto/create-activity.dto';
+import { FilterActivitiesInput } from './filters/filter-activities.input';
 import { ActivityInput } from './inputs/activity.input';
+import { WeekSchedule } from './scalars/week-schedule.scalar';
 
 @Resolver()
 export class ActivitiesResolver {
@@ -15,6 +17,11 @@ export class ActivitiesResolver {
   @Query(() => [ActivityType])
   async getActivities() {
     return this.activitiesService.findAll();
+  }
+
+  @Mutation(() => [ActivityType])
+  async getFilteredActivities(@Args('filter') filter: FilterActivitiesInput) {
+    return this.activitiesService.filterActivities(filter);
   }
 
   @Mutation(() => ActivityType)
