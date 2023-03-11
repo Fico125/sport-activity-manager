@@ -12,6 +12,9 @@ export class UserInput {
   @Field()
   readonly email: string;
 
+  @Field()
+  readonly password: string;
+
   @Field(() => [String])
   @ArrayMaxSize(2)
   readonly enrolledClasses: string[];

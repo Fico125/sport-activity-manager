@@ -17,6 +17,7 @@ type UserType {
   name: String!
   surname: String!
   email: String!
+  password: String!
   enrolledClasses: [String!]!
   role: String!
 }
@@ -75,6 +76,7 @@ input UserInput {
   name: String!
   surname: String!
   email: String!
+  password: String!
   enrolledClasses: [String!]!
   role: String!
 }

@@ -14,6 +14,9 @@ export class UserType {
   @Field()
   readonly email: string;
 
+  @Field()
+  readonly password: string;
+
   @Field(() => [String])
   readonly enrolledClasses: string[];
 
