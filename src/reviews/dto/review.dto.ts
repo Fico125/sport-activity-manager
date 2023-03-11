@@ -3,11 +3,11 @@ import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 @ObjectType()
 export class ReviewType {
   @Field(() => ID)
-  id: string;
+  readonly activityId: string;
 
-  @Field(() => Int)
-  readonly rating: number;
+  @Field(() => [Int])
+  readonly ratings: number[];
 
-  @Field()
-  readonly comment: string;
+  @Field(() => [String])
+  readonly comments: string[];
 }

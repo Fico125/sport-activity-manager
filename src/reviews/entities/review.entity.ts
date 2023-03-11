@@ -4,7 +4,7 @@ import { Max, Min } from 'class-validator';
 @InputType()
 export class ReviewInput {
   @Field(() => ID)
-  id: string;
+  activityId: string;
 
   @Field(() => Int)
   @Min(1)

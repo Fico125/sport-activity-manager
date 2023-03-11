@@ -22,9 +22,9 @@ type UserType {
 }
 
 type ReviewType {
-  id: ID!
-  rating: Int!
-  comment: String!
+  activityId: ID!
+  ratings: [Int!]!
+  comments: [String!]!
 }
 
 """Age level scalar type"""
@@ -41,6 +41,7 @@ type Query {
   getActivities: [ActivityType!]!
   getUsers: [UserType!]!
   getReviews: [ReviewType!]!
+  getAverageRatingForActivityId(activityId: String!): Float!
 }
 
 type Mutation {
@@ -79,7 +80,7 @@ input UserInput {
 }
 
 input ReviewInput {
-  id: ID!
+  activityId: ID!
   rating: Int!
   comment: String!
 }

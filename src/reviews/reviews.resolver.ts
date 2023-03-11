@@ -16,4 +16,9 @@ export class ReviewsResolver {
   getReviews() {
     return this.reviewsService.findAll();
   }
+
+  @Query(() => Number)
+  async getAverageRatingForActivityId(@Args('activityId') activityId: string) {
+    return this.reviewsService.getAverageRatingForActivityID(activityId);
+  }
 }
