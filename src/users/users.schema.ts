@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import * as bcrypt from 'bcrypt';
 
 export enum UserRole {
   USER = 'user',
@@ -7,6 +8,9 @@ export enum UserRole {
 
 @Schema()
 export class User {
+  @Prop()
+  readonly id: string;
+
   @Prop()
   name: string;
 

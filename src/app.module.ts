@@ -9,6 +9,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReviewsModule } from './reviews/reviews.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { ConfigModule } from '@nestjs/config';
+import { SendGridModule } from '@anchan828/nest-sendgrid';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +24,23 @@ import { ReviewsModule } from './reviews/reviews.module';
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/nest'),
     ReviewsModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MailerModule.forRoot({
+      transport: {
+        service: 'SendGrid',
+        auth: {
+          user: process.env.SENDGRID_USERNAME,
+          pass: process.env.SENDGRID_PASSWORD,
+        },
+      },
+    }),
+    SendGridModule.forRoot({
+      apikey:
+        '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',
+    }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [

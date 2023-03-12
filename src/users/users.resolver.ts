@@ -1,11 +1,17 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { AuthService } from 'src/auth/auth.service';
+import { RegisterInput } from 'src/auth/entities/register.entity';
 import { UserType } from './dto/create-user.dto';
 import { UserInput } from './entities/user.entity';
+import { User } from './users.schema';
 import { UsersService } from './users.service';
 
 @Resolver()
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Query(() => [UserType])
   async getUsers() {
@@ -28,5 +34,18 @@ export class UsersResolver {
   @Mutation(() => UserType)
   async deleteUser(@Args('id') id: string) {
     return this.usersService.delete(id);
+  }
+
+  @Mutation(() => UserType)
+  async register(@Args('input') input: RegisterInput): Promise<User> {
+    return this.authService.register(input);
+  }
+
+  @Mutation(() => UserType)
+  async login(
+    @Args('email') email: string,
+    @Args('password') password: string,
+  ) {
+    return this.authService.login(email, password);
   }
 }

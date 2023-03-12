@@ -53,6 +53,8 @@ type Mutation {
   createUser(input: UserInput!): UserType!
   updateUser(id: String!, updatedUser: UserInput!): UserType!
   deleteUser(id: String!): UserType!
+  register(input: RegisterInput!): UserType!
+  login(input: LoginInput!): UserType!
   createReview(createReviewInput: ReviewInput!): ReviewType!
 }
 
@@ -79,6 +81,20 @@ input UserInput {
   password: String!
   enrolledClasses: [String!]!
   role: String!
+}
+
+input RegisterInput {
+  name: String!
+  surname: String!
+  email: String!
+  password: String!
+  enrolledClasses: [String!]!
+  role: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }
 
 input ReviewInput {
