@@ -7,6 +7,7 @@ import { UsersService } from './users.service';
 import { UsersResolver } from './users.resolver';
 import { jwtConstants } from 'src/auth/constants';
 import { AuthModule } from 'src/auth/auth.module';
+import { RolesGuard } from 'src/roles-guard';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { AuthModule } from 'src/auth/auth.module';
     }),
     AuthModule,
   ],
-  providers: [UsersResolver, UsersService],
+  providers: [UsersResolver, UsersService, RolesGuard],
   exports: [UsersService, MongooseModule],
 })
 export class UsersModule {}

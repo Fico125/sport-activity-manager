@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { RolesGuard } from 'src/roles-guard';
 import { ActivitiesResolver } from './activities.resolver';
 import { ActivitySchema } from './activities.schema';
 import { ActivitesService } from './activities.service';
@@ -17,6 +18,7 @@ import { WeekScheduleScalar } from './scalars/week-schedule.scalar';
     AgeLevelScalar,
     ActivityNameScalar,
     WeekScheduleScalar,
+    RolesGuard,
   ],
 })
 export class ActivitiesModule {}

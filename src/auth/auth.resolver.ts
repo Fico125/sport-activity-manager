@@ -4,6 +4,7 @@ import { User } from '../users/users.schema';
 import { RegisterInput } from './entities/register.entity';
 import { LoginInput } from './entities/login.entity';
 import { UserType } from 'src/users/dto/create-user.dto';
+import { LoginResponse } from './interfaces/login-response';
 
 @Resolver()
 export class AuthResolver {
@@ -14,11 +15,11 @@ export class AuthResolver {
     return this.authService.register(input);
   }
 
-  @Mutation(() => UserType)
-  async login(@Args('input') input: LoginInput): Promise<User> {
+  @Mutation(() => LoginResponse)
+  async login(@Args('input') input: LoginInput): Promise<LoginResponse> {
     const { email, password } = input;
     const { user, accessToken } = await this.authService.login(email, password);
     console.log(accessToken);
-    return user;
+    return { user, accessToken };
   }
 }

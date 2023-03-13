@@ -22,6 +22,11 @@ type UserType {
   role: String!
 }
 
+type LoginResponse {
+  user: UserType!
+  accessToken: String!
+}
+
 type ReviewType {
   activityId: ID!
   ratings: [Int!]!
@@ -53,7 +58,7 @@ type Mutation {
   updateUser(id: String!, updatedUser: UserInput!): UserType!
   deleteUser(id: String!): UserType!
   register(input: RegisterInput!): UserType!
-  login(input: LoginInput!): UserType!
+  login(input: LoginInput!): LoginResponse!
   createReview(createReviewInput: ReviewInput!): ReviewType!
 }
 

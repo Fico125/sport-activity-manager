@@ -3,6 +3,9 @@ import { ActivitesService } from './activities.service';
 import { ActivityType } from './dto/activity.dto';
 import { FilterActivitiesInput } from './filters/filter-activities.input';
 import { ActivityInput } from './entities/activity.entity';
+import { UseGuards } from '@nestjs/common';
+import { RolesGuard } from 'src/roles-guard';
+import { Roles } from 'src/roles';
 
 @Resolver()
 export class ActivitiesResolver {
@@ -14,21 +17,29 @@ export class ActivitiesResolver {
   }
 
   @Query(() => [ActivityType])
+  @UseGuards(RolesGuard)
+  @Roles('user', 'admin')
   async getActivities() {
     return this.activitiesService.findAll();
   }
 
   @Mutation(() => [ActivityType])
+  @UseGuards(RolesGuard)
+  @Roles('user', 'admin')
   async getFilteredActivities(@Args('filter') filter: FilterActivitiesInput) {
     return this.activitiesService.filterActivities(filter);
   }
 
   @Mutation(() => ActivityType)
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   async createActivity(@Args('input') input: ActivityInput) {
     return this.activitiesService.create(input);
   }
 
   @Mutation(() => ActivityType)
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   async updateActivity(
     @Args('id') id: string,
     @Args('updatedActivity') updatedActivity: ActivityInput,
@@ -37,6 +48,8 @@ export class ActivitiesResolver {
   }
 
   @Mutation(() => ActivityType)
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   async deleteActivity(@Args('id') id: string) {
     return this.activitiesService.delete(id);
   }

@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from 'src/users/users.schema';
 import { RegisterInput } from './entities/register.entity';
 import { EmailService } from 'src/email/email.service';
+import { LoginResponse } from './interfaces/login-response';
 
 @Injectable()
 export class AuthService {
@@ -50,12 +51,9 @@ export class AuthService {
     return savedUser;
   }
 
-  async login(
-    email: string,
-    password: string,
-  ): Promise<{ user: User; accessToken: string }> {
+  async login(email: string, password: string): Promise<LoginResponse> {
     const user = await this.validateUser(email, password);
-    const payload = { sub: user.id, email: user.email };
+    const payload = { sub: user.id, email: user.email, role: user.role };
     const accessToken = await this.jwtService.signAsync(payload);
     return { user, accessToken };
   }
