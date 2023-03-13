@@ -8,11 +8,6 @@ import { User } from './users.schema';
 export class UsersService {
   constructor(@InjectModel('User') private userModel: Model<User>) {}
 
-  async create(createUserDto: UserInput): Promise<User> {
-    const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
-  }
-
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
   }

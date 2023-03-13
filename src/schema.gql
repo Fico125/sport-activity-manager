@@ -50,7 +50,6 @@ type Mutation {
   createActivity(input: ActivityInput!): ActivityType!
   updateActivity(id: String!, updatedActivity: ActivityInput!): ActivityType!
   deleteActivity(id: String!): ActivityType!
-  createUser(input: UserInput!): UserType!
   updateUser(id: String!, updatedUser: UserInput!): UserType!
   deleteUser(id: String!): UserType!
   register(input: RegisterInput!): UserType!
