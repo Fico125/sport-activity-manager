@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "a7e6003f-8149-4d44-8bce-6681199e51f2",
+		"name": "SportsComplex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11543122"
+	},
+	"item": [
+		{
+			"name": "Admin only requests",
+			"item": [
+				{
+					"name": "Create activity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  createActivity(input: {name:\"golf\", weekSchedule: { day: \"Monday\", startTime:\"13:00\"}, ageLevel:\"youth\", duration:45, description:\"golfing\", enrolledUsers:[\"John Doe\", \"Jane Doe\", \"Filip Cendak\"]}) {\r\n    name\r\n    weekSchedule\r\n    ageLevel\r\n    duration\r\n    description\r\n    enrolledUsers\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update activity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  updateActivity(id:\"640b22720c186a05274193d7\", updatedActivity: {name:\"basketball\", weekSchedule: { day: \"Tuesday\", startTime:\"13:00\"}, ageLevel:\"adults\", duration:300, description:\"like football, except it's not\", enrolledUsers:[]}) {\r\n    name\r\n    weekSchedule\r\n    ageLevel\r\n    duration\r\n    description\r\n    enrolledUsers\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete activity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  deleteActivity(id:\"640a3aa71227443149367421\") {\r\n    name\r\n    weekSchedule\r\n    ageLevel\r\n    duration\r\n    description\r\n    enrolledUsers\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reviews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  createReview(createReviewInput:{\r\n    activityId: \"640b22720c186a05274193d7\",\r\n      rating: 5,\r\n      comment: \"Really good class! Would recommend.\"\r\n  }\r\n  ) {\r\n    activityId\r\n    ratings \r\n    comments\r\n    }\r\n  }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get average rating for activity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  createReview(createReviewInput:{\r\n    activityId: \"640b22720c186a05274193d7\",\r\n      rating: 5,\r\n      comment: \"Really good class! Would recommend.\"\r\n  }\r\n  ) {\r\n    activityId\r\n    ratings \r\n    comments\r\n    }\r\n  }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n   getUsers {\r\n    name\r\n    surname\r\n    email\r\n    password\r\n    enrolledClasses\r\n    role\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  updateUser(id: \"640ca0d9aea9d21364983ed6\", updatedUser: {name:\"Milan\", surname:\"Milanovic\", email:\"milan@test.com\", password:\"Milan\", enrolledClasses:[\"basketball\", \"testing\"], role:\"user\"}) {\r\n    name\r\n    surname\r\n    email\r\n    password\r\n    enrolledClasses\r\n\t\trole\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  deleteUser(id: \"6409f240796264fd8713c155\") {\r\n    name\r\n    surname\r\n    email\r\n    enrolledClasses\r\n\t\trole\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZ3VsYXJ1c2VyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjc4ODExMTcwLCJleHAiOjE2Nzg4MTQ3NzB9.zxP17xFxCI-RAMo5O6zxXLN8dllfE-BXE6p8OOPNaB4",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User & Admin requests",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  register(input:{name:\"Laura\", surname:\"Laurovic\" email:\"lauralaurovic@gmail.com\", password:\"laura\", enrolledClasses:[\"golf\"], role:\"user\" }) {\r\n    name\r\n    surname\r\n    email\r\n    password\r\n    enrolledClasses\r\n    role\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  login(input:{email:\"filipcendak1@gmail.com\", password:\"test123\"}) {\r\n      email\r\n      name\r\n      surname\r\n      password\r\n      enrolledClasses\r\n      role\r\n      accessToken\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  login(input:{email:\"filipcendak1@gmail.com\", password:\"test123\"}) {\r\n      email\r\n      name\r\n      surname\r\n      password\r\n      enrolledClasses\r\n      role\r\n      accessToken\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDYwOTksImV4cCI6MTY3ODcwOTY5OX0.o5Xa242mYgpCzNPyICcX6Qungf29smEE_T9psIdQCEo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n   getActivities {\r\n    id\r\n    name\r\n    ageLevel\r\n    duration\r\n    weekSchedule\r\n    description\r\n    enrolledUsers\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter activities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  getFilteredActivities(filter: { ageLevel: \"children\", duration: 45 }) {\r\n    name\r\n    weekSchedule\r\n    ageLevel\r\n    duration\r\n    description\r\n    enrolledUsers\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwY2VuZGFrMUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg3MDU0MTIsImV4cCI6MTY3ODcwOTAxMn0.BMd4Xu-pnzGwU7oA57JKjth1LS-qg3OiEvaA9ESsF30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  createReview(createReviewInput:{\r\n    activityId: \"640b22720c186a05274193d7\",\r\n      rating: 5,\r\n      comment: \"Really good class! Would recommend.\"\r\n  }\r\n  ) {\r\n    activityId\r\n    ratings \r\n    comments\r\n    }\r\n  }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/graphql",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

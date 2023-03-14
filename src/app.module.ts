@@ -37,8 +37,7 @@ import { AuthModule } from './auth/auth.module';
       },
     }),
     SendGridModule.forRoot({
-      apikey:
-        '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',
+      apikey: process.env.SENDGRID_API_KEY,
     }),
     AuthModule,
   ],
