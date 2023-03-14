@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ReviewsService } from './reviews.service';
 import { ReviewType } from './dto/review.dto';
-import { ReviewInput } from './entities/review.entity';
+import { ReviewInput } from './input/review.input';
 import { UseGuards } from '@nestjs/common';
 import { Roles } from 'src/roles';
 import { RolesGuard } from 'src/roles-guard';

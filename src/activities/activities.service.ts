@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Activity } from './activities.schema';
-import { ActivityInput } from './entities/activity.entity';
+import { ActivityInput } from './input/activity.input';
 import { FilterActivitiesInput } from './filters/filter-activities.input';
 
 @Injectable()

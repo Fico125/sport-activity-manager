@@ -4,7 +4,7 @@ import { AuthService } from 'src/auth/auth.service';
 import { Roles } from 'src/roles';
 import { RolesGuard } from 'src/roles-guard';
 import { UserType } from './dto/create-user.dto';
-import { UserInput } from './entities/user.entity';
+import { UserInput } from './input/user.input';
 import { UsersService } from './users.service';
 
 @Resolver()

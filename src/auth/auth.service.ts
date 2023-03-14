@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/users/users.schema';
-import { RegisterInput } from './entities/register.entity';
+import { RegisterInput } from './input/register.input';
 import { EmailService } from 'src/email/email.service';
 import { LoginResponse } from './interfaces/login-response';
 

@@ -2,7 +2,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ActivitesService } from './activities.service';
 import { ActivityType } from './dto/activity.dto';
 import { FilterActivitiesInput } from './filters/filter-activities.input';
-import { ActivityInput } from './entities/activity.entity';
+import { ActivityInput } from './input/activity.input';
 import { UseGuards } from '@nestjs/common';
 import { RolesGuard } from 'src/roles-guard';
 import { Roles } from 'src/roles';
