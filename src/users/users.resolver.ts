@@ -1,6 +1,5 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { AuthService } from 'src/auth/auth.service';
 import { Roles } from 'src/roles';
 import { RolesGuard } from 'src/roles-guard';
 import { UserType } from './dto/create-user.dto';
@@ -9,10 +8,7 @@ import { UsersService } from './users.service';
 
 @Resolver()
 export class UsersResolver {
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly authService: AuthService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
   @Query(() => [UserType], { description: 'Get all users.' })
   @UseGuards(RolesGuard)
@@ -23,7 +19,7 @@ export class UsersResolver {
 
   @Mutation(() => UserType, { description: 'Update a user by ID.' })
   @UseGuards(RolesGuard)
-  @Roles('user', 'admin')
+  @Roles('admin')
   async updateUser(
     @Args('id', { description: 'The ID of the user to update' }) id: string,
     @Args('updatedUser', { description: 'The updated user data' })
@@ -34,7 +30,7 @@ export class UsersResolver {
 
   @Mutation(() => UserType, { description: 'Delete a user by ID.' })
   @UseGuards(RolesGuard)
-  @Roles('user', 'admin')
+  @Roles('admin')
   async deleteUser(
     @Args('id', { description: 'The ID of the user to delete' }) id: string,
   ) {
