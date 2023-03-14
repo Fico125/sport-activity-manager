@@ -11,10 +11,16 @@ export class ActivityInput {
   @Type(() => String)
   readonly name: string;
 
-  @Field(() => WeekScheduleScalar)
+  @Field(() => WeekScheduleScalar, {
+    description:
+      'Week schedule for the activity. Needs to be formatted like: { day: "Monday", startTime:"13:00"}. Valid days: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. StartTime accepts range 00:00-23:59',
+  })
   readonly weekSchedule: { day: string; startTime: string };
 
-  @Field(() => AgeLevelScalar)
+  @Field(() => AgeLevelScalar, {
+    description:
+      'Age level for the class. Valid inputs: children, youth, young adults, adults.',
+  })
   @Type(() => String)
   readonly ageLevel: string;
 
@@ -24,7 +30,10 @@ export class ActivityInput {
   @Field()
   readonly description: string;
 
-  @Field(() => [String])
+  @Field(() => [String], {
+    description:
+      'A list of enrolled users. Activity can enroll a maximum of 10 users.',
+  })
   @ArrayMaxSize(10)
   readonly enrolledUsers: string[];
 }

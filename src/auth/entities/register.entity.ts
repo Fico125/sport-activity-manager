@@ -14,9 +14,12 @@ export class RegisterInput {
   @Field()
   readonly password: string;
 
-  @Field(() => [String])
+  @Field(() => [String], {
+    description:
+      'Enrolled classes. Choose maximum 2 from the list: baseball, basketball, football, boxing, cycling, fitness, golf, running, swimming, tennis, triathlon, volleyball.',
+  })
   readonly enrolledClasses: string[];
 
-  @Field()
+  @Field({ description: 'Role of the registered user. Can be user or admin.' })
   readonly role: string;
 }

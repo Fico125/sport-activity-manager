@@ -43,38 +43,113 @@ scalar ActivityName
 scalar WeekSchedule
 
 type Query {
-  hello: String!
+  """Returns a list of all activities."""
   getActivities: [ActivityType!]!
+
+  """Get all users."""
   getUsers: [UserType!]!
+
+  """Get all reviews."""
   getReviews: [ReviewType!]!
-  getAverageRatingForActivityId(activityId: String!): Float!
+
+  """Get the average rating for the activity ID."""
+  getAverageRatingForActivityId(
+    """ID of the activity for which the average rating is wanted."""
+    activityId: String!
+  ): Float!
 }
 
 type Mutation {
+  """Returns a list of activities that match the filter criteria."""
   getFilteredActivities(filter: FilterActivitiesInput!): [ActivityType!]!
-  createActivity(input: ActivityInput!): ActivityType!
-  updateActivity(id: String!, updatedActivity: ActivityInput!): ActivityType!
-  deleteActivity(id: String!): ActivityType!
-  updateUser(id: String!, updatedUser: UserInput!): UserType!
-  deleteUser(id: String!): UserType!
-  register(input: RegisterInput!): UserType!
-  login(input: LoginInput!): LoginResponse!
-  createReview(createReviewInput: ReviewInput!): ReviewType!
+
+  """Creates a new activity."""
+  createActivity(
+    """Input for creating a new activity."""
+    input: ActivityInput!
+  ): ActivityType!
+
+  """Updates an existing activity by ID."""
+  updateActivity(
+    """Activity ID"""
+    id: String!
+
+    """Updated activity data."""
+    updatedActivity: ActivityInput!
+  ): ActivityType!
+
+  """Deletes an activity by ID."""
+  deleteActivity(
+    """Activity ID"""
+    id: String!
+  ): ActivityType!
+
+  """Update a user by ID."""
+  updateUser(
+    """The ID of the user to update"""
+    id: String!
+
+    """The updated user data"""
+    updatedUser: UserInput!
+  ): UserType!
+
+  """Delete a user by ID."""
+  deleteUser(
+    """The ID of the user to delete"""
+    id: String!
+  ): UserType!
+
+  """Registers a new user."""
+  register(
+    """Input for registering a new user."""
+    input: RegisterInput!
+  ): UserType!
+
+  """Logs in a registered user."""
+  login(
+    """Input for logging in a registered user."""
+    input: LoginInput!
+  ): LoginResponse!
+
+  """Create a new review."""
+  createReview(
+    """Input for creating a new review."""
+    createReviewInput: ReviewInput!
+  ): ReviewType!
 }
 
 input FilterActivitiesInput {
+  """Name of the activity."""
   name: String
+
+  """
+  Week schedule for the activity. Needs to be formatted like: { day: "Monday", startTime:"13:00"}. Valid days: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. StartTime accepts range 00:00-23:59
+  """
   weekSchedule: WeekSchedule
+
+  """
+  Age level for the class. Valid inputs: children, youth, young adults, adults.
+  """
   ageLevel: AgeLevel
   duration: Int
 }
 
 input ActivityInput {
   name: ActivityName!
+
+  """
+  Week schedule for the activity. Needs to be formatted like: { day: "Monday", startTime:"13:00"}. Valid days: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday. StartTime accepts range 00:00-23:59
+  """
   weekSchedule: WeekSchedule!
+
+  """
+  Age level for the class. Valid inputs: children, youth, young adults, adults.
+  """
   ageLevel: AgeLevel!
   duration: Int!
   description: String!
+
+  """A list of enrolled users. Activity can enroll a maximum of 10 users."""
   enrolledUsers: [String!]!
 }
 
@@ -92,12 +167,21 @@ input RegisterInput {
   surname: String!
   email: String!
   password: String!
+
+  """
+  Enrolled classes. Choose maximum 2 from the list: baseball, basketball, football, boxing, cycling, fitness, golf, running, swimming, tennis, triathlon, volleyball.
+  """
   enrolledClasses: [String!]!
+
+  """Role of the registered user. Can be user or admin."""
   role: String!
 }
 
 input LoginInput {
+  """Email of the registered user wishing to log in."""
   email: String!
+
+  """Password of the registered user wishing to log in."""
   password: String!
 }
 

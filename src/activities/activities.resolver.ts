@@ -11,46 +11,51 @@ import { Roles } from 'src/roles';
 export class ActivitiesResolver {
   constructor(private readonly activitiesService: ActivitesService) {}
 
-  @Query(() => String)
-  async hello() {
-    return 'hello';
-  }
-
-  @Query(() => [ActivityType])
+  @Query(() => [ActivityType], {
+    description: 'Returns a list of all activities.',
+  })
   @UseGuards(RolesGuard)
   @Roles('user', 'admin')
   async getActivities() {
     return this.activitiesService.findAll();
   }
 
-  @Mutation(() => [ActivityType])
+  @Mutation(() => [ActivityType], {
+    description: 'Returns a list of activities that match the filter criteria.',
+  })
   @UseGuards(RolesGuard)
   @Roles('user', 'admin')
   async getFilteredActivities(@Args('filter') filter: FilterActivitiesInput) {
     return this.activitiesService.filterActivities(filter);
   }
 
-  @Mutation(() => ActivityType)
+  @Mutation(() => ActivityType, { description: 'Creates a new activity.' })
   @UseGuards(RolesGuard)
   @Roles('admin')
-  async createActivity(@Args('input') input: ActivityInput) {
+  async createActivity(
+    @Args('input', { description: 'Input for creating a new activity.' })
+    input: ActivityInput,
+  ) {
     return this.activitiesService.create(input);
   }
 
-  @Mutation(() => ActivityType)
+  @Mutation(() => ActivityType, {
+    description: 'Updates an existing activity by ID.',
+  })
   @UseGuards(RolesGuard)
   @Roles('admin')
   async updateActivity(
-    @Args('id') id: string,
-    @Args('updatedActivity') updatedActivity: ActivityInput,
+    @Args('id', { description: 'Activity ID' }) id: string,
+    @Args('updatedActivity', { description: 'Updated activity data.' })
+    updatedActivity: ActivityInput,
   ) {
     return this.activitiesService.update(id, updatedActivity);
   }
 
-  @Mutation(() => ActivityType)
+  @Mutation(() => ActivityType, { description: 'Deletes an activity by ID.' })
   @UseGuards(RolesGuard)
   @Roles('admin')
-  async deleteActivity(@Args('id') id: string) {
+  async deleteActivity(@Args('id', { description: 'Activity ID' }) id: string) {
     return this.activitiesService.delete(id);
   }
 }

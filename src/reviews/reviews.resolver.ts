@@ -10,24 +10,36 @@ import { RolesGuard } from 'src/roles-guard';
 export class ReviewsResolver {
   constructor(private readonly reviewsService: ReviewsService) {}
 
-  @Mutation(() => ReviewType)
+  @Mutation(() => ReviewType, { description: 'Create a new review.' })
   @UseGuards(RolesGuard)
   @Roles('user', 'admin')
-  createReview(@Args('createReviewInput') createReviewInput: ReviewInput) {
+  createReview(
+    @Args('createReviewInput', {
+      description: 'Input for creating a new review.',
+    })
+    createReviewInput: ReviewInput,
+  ) {
     return this.reviewsService.create(createReviewInput);
   }
 
-  @Query(() => [ReviewType])
+  @Query(() => [ReviewType], { description: 'Get all reviews.' })
   @UseGuards(RolesGuard)
   @Roles('admin')
   getReviews() {
     return this.reviewsService.findAll();
   }
 
-  @Query(() => Number)
+  @Query(() => Number, {
+    description: 'Get the average rating for the activity ID.',
+  })
   @UseGuards(RolesGuard)
   @Roles('admin')
-  async getAverageRatingForActivityId(@Args('activityId') activityId: string) {
+  async getAverageRatingForActivityId(
+    @Args('activityId', {
+      description: 'ID of the activity for which the average rating is wanted.',
+    })
+    activityId: string,
+  ) {
     return this.reviewsService.getAverageRatingForActivityID(activityId);
   }
 }

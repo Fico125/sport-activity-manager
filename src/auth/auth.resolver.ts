@@ -10,13 +10,19 @@ import { LoginResponse } from './interfaces/login-response';
 export class AuthResolver {
   constructor(private authService: AuthService) {}
 
-  @Mutation(() => UserType)
-  async register(@Args('input') input: RegisterInput): Promise<User> {
+  @Mutation(() => UserType, { description: 'Registers a new user.' })
+  async register(
+    @Args('input', { description: 'Input for registering a new user.' })
+    input: RegisterInput,
+  ): Promise<User> {
     return this.authService.register(input);
   }
 
-  @Mutation(() => LoginResponse)
-  async login(@Args('input') input: LoginInput): Promise<LoginResponse> {
+  @Mutation(() => LoginResponse, { description: 'Logs in a registered user.' })
+  async login(
+    @Args('input', { description: 'Input for logging in a registered user.' })
+    input: LoginInput,
+  ): Promise<LoginResponse> {
     const { email, password } = input;
     const { user, accessToken } = await this.authService.login(email, password);
     console.log(accessToken);
